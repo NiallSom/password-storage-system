@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application {
     public static String userToken = "";
+    public static String user_id = ""; // not yet used
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("sign_in_view.fxml"));

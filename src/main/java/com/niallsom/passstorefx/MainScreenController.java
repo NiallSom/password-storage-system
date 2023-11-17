@@ -28,15 +28,19 @@ public class MainScreenController {
     private TableColumn<DataModel,String> passwordColumn;
     public void initialize() {
        updateTable();
-        sign_out.setOnAction((e)-> {
-            SceneController.setScene(e,"sign_in_view");
-        });
+        sign_out.setOnAction((e)-> SceneController.setScene(e,"sign_in_view"));
         submit.setOnAction((e)-> {
+            // posting data to database
             DatabaseHandling.postData(websiteData.getText(),emailData.getText(),passwordData.getText());
             updateTable();
+            // clearing TextFields
+            websiteData.clear();
+            emailData.clear();
+            passwordData.clear();
         });
     }
     public void updateTable(){
+        // this will get the data from the database and put it in the tableview
         table.getItems().clear();
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("Website"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));

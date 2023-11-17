@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class DatabaseHandling {
     private static final String key = System.getenv("database_password");
     public static Document dataExists(String username){
+        // this is used to check if a user already exists for sign in and sign up
         String uri = "mongodb+srv://Admin:"+key+"@cluster0.tlsr9al.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Pass-Store");
@@ -24,9 +25,14 @@ public class DatabaseHandling {
         return null;
     }
     public static boolean signIn(String username, String password){
-        System.out.println(key);
         String encPass = Crypto.encryptPasswordSHA256(password);
-        return dataExists(username).get("Password").equals(encPass);
+        Document exists = dataExists(username);
+        if (exists !=null){
+            return dataExists(username).get("Password").equals(encPass);
+        }else {
+            return false;
+        }
+
     }
     public static boolean signUp(String username, String password){
         String encPass = Crypto.encryptPasswordSHA256(password);

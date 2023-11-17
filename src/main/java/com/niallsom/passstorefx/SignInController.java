@@ -18,18 +18,14 @@ public class SignInController {
     private TextField password;
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     public void initialize(){
-        signUp.setOnAction((e)->{
-            SceneController.setScene(e,"sign_up_view");
-        });
+        signUp.setOnAction((e)-> SceneController.setScene(e,"sign_up_view"));
         login.setOnAction((e)->{
-            //SceneController.setScene(e,"selection_menu");
-            //Nially,123
             if (DatabaseHandling.signIn(username.getText(),password.getText())){
-                userToken = password.getText();
-                SceneController.setScene(e,"main_screen");
+                userToken = password.getText();// set user token to the login password so stored data can be decrypted
+                SceneController.setScene(e,"main_screen"); // switch scene to main_screen
             }else {
                 alert.setContentText("Sorry incorrect username or password");
-                alert.show();
+                alert.show();// show alert
             }
 
         });
