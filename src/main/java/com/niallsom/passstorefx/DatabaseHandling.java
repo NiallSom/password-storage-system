@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 
 public class DatabaseHandling {
+    // MAKE THIS CLASS OBJECT ORIENTATED
     private static final String key = System.getenv("database_password");
     public static Document dataExists(String username){
         // this is used to check if a user already exists for sign in and sign up
@@ -47,12 +48,12 @@ public class DatabaseHandling {
 
                 return true;
             } catch (Exception ignored) {}
-        }else {
-            System.out.println("Nope");
         }
         return false;
     }
+    /** Posts data to database**/
     public static void postData(String website, String email, String password){
+        // posts data to database
         String uri = "mongodb+srv://Admin:"+key+"@cluster0.tlsr9al.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Pass-Store");
@@ -65,6 +66,7 @@ public class DatabaseHandling {
 
         } catch (Exception ignored) {}
     }
+    /** Retrieves data from the database and returns it as a DataModel array**/
     public static DataModel[] GetData(){
         String uri = "mongodb+srv://Admin:"+key+"@cluster0.tlsr9al.mongodb.net/?retryWrites=true&w=majority";
         ArrayList<DataModel> items = new ArrayList<>();

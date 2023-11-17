@@ -41,7 +41,7 @@ public class Crypto {
     //encryption
     public static String encryptAES(String strToEnc, String sec){
         try {
-            setKey(sec);
+            setKey(sec); // sets the secret key
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEnc.getBytes("UTF-8")));
