@@ -42,7 +42,7 @@
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0">
                <children>
                   <Label prefHeight="15.0" prefWidth="199.0" text="Website:" />
-                  <TextField fx:id="websiteData" prefHeight="23.0" prefWidth="162.0" promptText="Website" />
+                  <TextField fx:id="websiteData" prefHeight="23.0" prefWidth="162.0" promptText="Website" text="www." />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0">

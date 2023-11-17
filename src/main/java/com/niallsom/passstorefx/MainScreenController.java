@@ -27,17 +27,22 @@ public class MainScreenController {
     @FXML
     private TableColumn<DataModel,String> passwordColumn;
     public void initialize() {
+       updateTable();
+        sign_out.setOnAction((e)-> {
+            SceneController.setScene(e,"sign_in_view");
+        });
+        submit.setOnAction((e)-> {
+            DatabaseHandling.postData(websiteData.getText(),emailData.getText(),passwordData.getText());
+            updateTable();
+        });
+    }
+    public void updateTable(){
+        table.getItems().clear();
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("Website"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
         for (DataModel data: DatabaseHandling.GetData()){
             table.getItems().add(new DataModel(data.getWebsite(),data.getEmail(),Crypto.decryptAES(data.getPassword(), SignInController.userToken)));
         }
-        sign_out.setOnAction((e)-> {
-            SceneController.setScene(e,"sign_in_view");
-        });
-        submit.setOnAction((e)-> {
-            DatabaseHandling.postData(websiteData.getText(),emailData.getText(),passwordData.getText());
-        });
     }
 }
