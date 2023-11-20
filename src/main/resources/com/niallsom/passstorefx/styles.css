@@ -1,21 +1,7 @@
-.label {
-    -fx-font-family: "Courier New";
-}
-
 .root {
-    -fx-font-family: "Courier New";
-    -fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);
+    -fx-background-image: url("background.png");
 }
-.button{
--fx-text-fill: #ff7f50;
--fx-border-color: #ff7f50;
--fx-border-radius: 50px;
--fx-background-radius: 50px;
--fx-scale-x: 1.1;
--fx-scale-y: 1.1;
--fx-background-color: #6a5acd;
-}
-.button:hover{
--fx-cursor: hand;
--fx-background-color: rgb(149,  98, 158);
+.button {
+    -fx-background-color: #6383fa;
+    -fx-text-fill: white;
 }

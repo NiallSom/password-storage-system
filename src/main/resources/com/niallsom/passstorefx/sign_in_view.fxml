@@ -1,39 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" spacing="10.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.niallsom.passstorefx.SignInController">
-   <children>
-      <Label alignment="CENTER" text="Pass-Store" textAlignment="CENTER" underline="true">
-         <font>
-            <Font name="Courier New" size="36.0" />
-         </font>
-      </Label>
-      <Label text="Login">
-         <font>
-            <Font name="Courier New" size="19.0" />
-         </font>
-      </Label>
-      <Label prefHeight="15.0" prefWidth="300.0" text="Username:">
-         <font>
-            <Font name="Courier New" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="username" maxWidth="300.0" prefWidth="300.0" promptText="Username" />
-      <Label prefHeight="17.0" prefWidth="300.0" text="Password:" />
-      <PasswordField fx:id="password" maxWidth="300.0" prefWidth="300.0" promptText="Password" />
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="511.0" spacing="10.0">
-         <children>
-            <Button fx:id="login" mnemonicParsing="false" text="Login" />
-            <Label text="or" />
-            <Button fx:id="signUp" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Signup" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.niallsom.passstorefx.SignInController">
+
+      <VBox alignment="TOP_CENTER" layoutX="499.0" layoutY="-1.0" prefHeight="600.0" prefWidth="500.0">
+
+          <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+              <VBox.margin>
+                  <Insets bottom="20.0" />
+              </VBox.margin>
+              <Image url="@Pass-Store.png" />
+          </ImageView>
+            <Label text="Hello ! Welcome back">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="14.0" prefWidth="250.0" text="Username:">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="username" maxWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" promptText="Username">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="250.0" text="Password:">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="password" maxWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" promptText="Password" />
+            <HBox maxWidth="-Infinity" prefHeight="17.0" prefWidth="250.0">
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="106.0" text="Remember me" />
+                  <Hyperlink alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="24.0" prefWidth="145.0" text="Reset Password!" textAlignment="RIGHT" />
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="login" mnemonicParsing="false" prefHeight="25.0" prefWidth="249.0" text="Login">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="or">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" spacing="10.0">
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@google.png" />
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@facebook.png" />
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@apple.png" />
+                </ImageView>
+            </HBox>
+            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="24.0" prefWidth="219.0">
+                  <Label text="Dont have an account?" />
+                  <Hyperlink text="Create account">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+            </HBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="603.0" prefWidth="500.0">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Pass-Store">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Your personal password storage system" wrappingWidth="442.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+      </VBox>
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+</AnchorPane>
