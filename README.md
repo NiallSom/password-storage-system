@@ -2,7 +2,7 @@
 Password storage system using MongoDB database, AES encryption to store passwords, SHA256 to encrypt user login data.
 
 # Main menu
-<img width="577" alt="image" src="https://github.com/NiallSom/password-storage-system/assets/117994016/91eb810a-f7f9-4fc9-bb1c-dba566da1d4d">
+<img width="751" alt="image" src="https://github.com/NiallSom/password-storage-system/assets/117994016/65f8b635-aee5-42fc-8bb7-6ec6c6b8e6c6">
 
 
 # Login
