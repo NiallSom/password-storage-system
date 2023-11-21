@@ -3,11 +3,14 @@ package com.niallsom.passstorefx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 
 public class SignInController {
     public static String userToken;
 
+    @FXML
+    private Hyperlink signUp;
     @FXML
     private Button login;
     @FXML
@@ -16,7 +19,7 @@ public class SignInController {
     private TextField password;
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     public void initialize(){
-        //signUp.setOnAction((e)-> SceneController.setScene(e,"sign_up_view"));
+        signUp.setOnAction((e)-> SceneController.setScene(e,"sign_up_view"));
         login.setOnAction((e)->{
             if (DatabaseHandling.signIn(username.getText(),password.getText())){
                 userToken = password.getText();// set user token to the login password so stored data can be decrypted
@@ -27,7 +30,6 @@ public class SignInController {
             }
 
         });
-
     }
 
 }

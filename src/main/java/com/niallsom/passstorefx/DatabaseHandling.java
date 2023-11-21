@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class DatabaseHandling {
     // MAKE THIS CLASS OBJECT ORIENTATED
     private static final String key = System.getenv("database_password");
+    private static String id = "";
     public static Document dataExists(String username){
         // this is used to check if a user already exists for sign in and sign up
         String uri = "mongodb+srv://Admin:"+key+"@cluster0.tlsr9al.mongodb.net/?retryWrites=true&w=majority";
@@ -19,16 +20,15 @@ public class DatabaseHandling {
             MongoDatabase database = mongoClient.getDatabase("Pass-Store");
             MongoCollection<Document> collection = database.getCollection("user_data");
             Bson bsonFilter = Filters.eq("Username", username);
-            Document exists = collection.find(bsonFilter).first();
             return collection.find(bsonFilter).first();
         } catch (Exception ignored) {}
-        //return this.collection.find(filter).first();
         return null;
     }
     public static boolean signIn(String username, String password){
         String encPass = Crypto.encryptPasswordSHA256(password);
         Document exists = dataExists(username);
         if (exists !=null){
+            id = dataExists(username).get("_id").toString();
             return dataExists(username).get("Password").equals(encPass);
         }else {
             return false;
@@ -45,9 +45,12 @@ public class DatabaseHandling {
                 Document data = new Document("Username",username);
                 data.append("Password",encPass);
                 collection.insertOne(data);
-
+                String id = dataExists(username).get("_id").toString();
+                database.createCollection(id);
                 return true;
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
         return false;
     }
@@ -57,7 +60,7 @@ public class DatabaseHandling {
         String uri = "mongodb+srv://Admin:"+key+"@cluster0.tlsr9al.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Pass-Store");
-            MongoCollection<Document> collection = database.getCollection("data");
+            MongoCollection<Document> collection = database.getCollection(id);
             Document data = new Document("Website",website);
             data.append("Email", email);
             data.append("Password",Crypto.encryptAES(password,SignInController.userToken));
@@ -74,7 +77,7 @@ public class DatabaseHandling {
                 MongoClient mongoClient = MongoClients.create(uri)) {
 
             MongoDatabase database = mongoClient.getDatabase("Pass-Store");
-            MongoCollection<Document> collection = database.getCollection("data");
+            MongoCollection<Document> collection = database.getCollection(id);
 
             FindIterable<Document> iterDoc = collection.find();
 
