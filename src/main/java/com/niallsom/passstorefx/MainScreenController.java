@@ -26,12 +26,13 @@ public class MainScreenController {
     private TableColumn<DataModel,String> emailColumn;
     @FXML
     private TableColumn<DataModel,String> passwordColumn;
+    public DatabaseHandling databaseHandling = new DatabaseHandling(DatabaseHandling.id);
     public void initialize() {
        updateTable();
         sign_out.setOnAction((e)-> SceneController.setScene(e,"sign_in_view"));
         submit.setOnAction((e)-> {
             // posting data to database
-            DatabaseHandling.postData(websiteData.getText(),emailData.getText(),passwordData.getText());
+            databaseHandling.postData(websiteData.getText(),emailData.getText(),passwordData.getText());
             updateTable();
             // clearing TextFields
             websiteData.clear();
@@ -45,7 +46,7 @@ public class MainScreenController {
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("Website"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
-        for (DataModel data: DatabaseHandling.GetData()){
+        for (DataModel data: databaseHandling.GetData()){
             table.getItems().add(new DataModel(data.getWebsite(),data.getEmail(),Crypto.decryptAES(data.getPassword(), SignInController.userToken)));
         }
     }

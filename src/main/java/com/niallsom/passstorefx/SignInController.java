@@ -18,10 +18,11 @@ public class SignInController {
     @FXML
     private TextField password;
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    DatabaseHandling databaseHandling = new DatabaseHandling("user_data");
     public void initialize(){
         signUp.setOnAction((e)-> SceneController.setScene(e,"sign_up_view"));
         login.setOnAction((e)->{
-            if (DatabaseHandling.signIn(username.getText(),password.getText())){
+            if (databaseHandling.signIn(username.getText(),password.getText())){
                 userToken = password.getText();// set user token to the login password so stored data can be decrypted
                 SceneController.setScene(e,"main_screen"); // switch scene to main_screen
             }else {
